@@ -10,17 +10,24 @@ from models import storage
 
 @app_views.route('/status', methods=['GET'])
 def get_status():
+    """
+    Status Route
+    return: Response with JSON
+    """
     return jsonify({"status": "OK"})
 
-@app.route('/api/v1/stats', methods=['GET'])
+@app.route('/stats', methods=['GET'])
 def get_stats():
-    data = {"amenities": 'Amenity',
-            "cities": 'City',
-            "places": 'Place',
-            "reviews": 'Review',
-            "states": 'State',
-            "users": 'User'}
+    """
+    stats of all obj routes
+    """
+    data = {
+            "amenities": storage.count("Amenity"),
+            "cities": storage.count("City"),
+            "places": storage.count("Place"),
+            "reviews": storage.count("Review"),
+            "states": storage.count("State"),
+            "users": storage.count("User"),
+            }
 
-    for i in data.keys():
-        data[i] = storage.count(data.get(i))
     return jsonify(data)
