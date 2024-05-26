@@ -12,9 +12,6 @@ app = Flask(__name__)
 app.register_blueprint(app_views)
 
 
-CORS(app, resources={'/*': {'origins': app_host}})
-
-
 @app.teardown_appcontext
 def teardown_db(exception):
     """Closes storage on teardown"""
