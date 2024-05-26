@@ -17,12 +17,6 @@ def teardown_db(exception):
     storage.close()
 
 
-@app.errorhandler(404)
-def error_404(error):
-    '''Handles the 404 HTTP error code.'''
-    return jsonify(error='Not found'), 404
-
-
 @app.errorhandler(400)
 def error_400(error):
     '''Handles the 400 HTTP error code.'''
